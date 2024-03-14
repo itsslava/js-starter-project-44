@@ -6,7 +6,6 @@ import * as func from '../src/index.js';
 
 export default function playGame() {
   const name = func.welcome('What is the result of the expression?');
-  // console.log('What is the result of the expression?');
 
   let correctAnswersCount = 0;
   while (correctAnswersCount < 3) {

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import readlineSync from 'readline-sync';
 
@@ -9,6 +10,9 @@ export function welcome(question) {
   console.log(question);
   return name;
 }
+
+// количество раундов
+export const roundNumber = 3;
 
 // генерации случайного числа
 export function getRandomNumber(min, max) {
@@ -66,4 +70,19 @@ export function printWrongMessage(answer, correctAnswer, name) {
 // проверка числа на четность
 export function isEven(n) {
   return n % 2 === 0;
+}
+
+// поиск наибольшего общего делителя
+export function getGcd(a, b) {
+  // Пока второе число не станет равным нулю
+  while (b !== 0) {
+    // Находим остаток от деления первого числа на второе
+    const remainder = a % b;
+    // Переносим второе число в первое
+    a = b;
+    // Переносим остаток во второе число
+    b = remainder;
+  }
+  // Когда второе число стало равным нулю, первое число и есть НОД
+  return a;
 }
