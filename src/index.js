@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import readlineSync from 'readline-sync';
@@ -12,11 +13,46 @@ export function welcome(question) {
 }
 
 // количество раундов
-export const roundNumber = 3;
+export const numberOfRounds = 3;
 
 // генерации случайного числа
 export function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// вывод сообщения о правильности ответа
+export function printCorrectMessage() {
+  console.log('Correct!');
+}
+
+// получение ответа пользовавтеля
+
+export function getAnswer(value, addition = null) {
+  const userAnswer = readlineSync.question(`Question: ${value} \nYour answer: `, addition);
+
+  return userAnswer;
+}
+
+// вывод сообщения о неправильности ответа
+export function printWrongMessage(answer, correctAnswer, name) {
+  console.log(
+    `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${name}!`,
+  );
+}
+
+// проверка числа на четность
+export function isEven(n) {
+  return n % 2 === 0;
+}
+
+// поиск наибольшего общего делителя
+export function getGcd(a, b) {
+  while (b !== 0) {
+    const remainder = a % b;
+    a = b;
+    b = remainder;
+  }
+  return a;
 }
 
 // генерация математического знака
@@ -27,8 +63,7 @@ export function randomSign() {
 
 // генерация случайного математического выражения
 export function generateMathExpression() {
-  const operators = ['+', '-', '*'];
-  const operator = operators[getRandomNumber(0, operators.length - 1)];
+  const operator = randomSign();
   const operand1 = getRandomNumber(1, 10);
   const operand2 = getRandomNumber(1, 10);
   let expression = '';
@@ -52,37 +87,4 @@ export function generateMathExpression() {
   }
 
   return { expression, result };
-}
-
-// вывод сообщения о правильности ответа
-export function printCorrectMessage(answer) {
-  console.log(`Your answer: ${answer}`);
-  console.log('Correct!');
-}
-
-// вывод сообщения о неправильности ответа и завершения игры
-export function printWrongMessage(answer, correctAnswer, name) {
-  console.log(
-    `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${name}!`,
-  );
-}
-
-// проверка числа на четность
-export function isEven(n) {
-  return n % 2 === 0;
-}
-
-// поиск наибольшего общего делителя
-export function getGcd(a, b) {
-  // Пока второе число не станет равным нулю
-  while (b !== 0) {
-    // Находим остаток от деления первого числа на второе
-    const remainder = a % b;
-    // Переносим второе число в первое
-    a = b;
-    // Переносим остаток во второе число
-    b = remainder;
-  }
-  // Когда второе число стало равным нулю, первое число и есть НОД
-  return a;
 }
