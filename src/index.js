@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 import readlineSync from 'readline-sync';
 
-// приветсвтие и запись имеени пользователя
+// приветсвтие и запись имени пользователя
 export function welcome(question) {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
@@ -15,9 +15,10 @@ export function welcome(question) {
 // количество раундов
 export const numberOfRounds = 3;
 
-// генерации случайного числа
-export function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+// получение ответа пользовавтеля
+export function getAnswer(value, addition = null) {
+  const userAnswer = readlineSync.question(`Question: ${value} \nYour answer: `, addition);
+  return userAnswer;
 }
 
 // вывод сообщения о правильности ответа
@@ -25,19 +26,16 @@ export function printCorrectMessage() {
   console.log('Correct!');
 }
 
-// получение ответа пользовавтеля
-
-export function getAnswer(value, addition = null) {
-  const userAnswer = readlineSync.question(`Question: ${value} \nYour answer: `, addition);
-
-  return userAnswer;
-}
-
 // вывод сообщения о неправильности ответа
 export function printWrongMessage(answer, correctAnswer, name) {
   console.log(
     `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${name}!`,
   );
+}
+
+// генерации случайного числа
+export function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // проверка числа на четность
@@ -87,4 +85,26 @@ export function generateMathExpression() {
   }
 
   return { expression, result };
+}
+
+// генерация арифметической прогрессии
+export function generateProgression() {
+  const length = getRandomNumber(5, 10);
+
+  const start = getRandomNumber(1, 50);
+  const step = getRandomNumber(1, 10);
+
+  const hiddenIndex = Math.floor(Math.random() * length); // случайный индекс для скрытого числа
+  const hiddenNumber = start + step * hiddenIndex;
+
+  const progression = [];
+  for (let i = 0; i < length; i += 1) {
+    if (i === hiddenIndex) {
+      progression.push('..'); // скрываем число двумя точками
+    } else {
+      progression.push(start + step * i); // добавляем число в прогрессию
+    }
+  }
+
+  return { progression, hiddenNumber };
 }

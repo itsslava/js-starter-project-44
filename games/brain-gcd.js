@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import * as func from '../src/index.js';
 
-export default function gcdGame() {
+export default function gameGcd() {
   const name = func.welcome('Find the greatest common divisor of given numbers.');
 
   let counter = 0;

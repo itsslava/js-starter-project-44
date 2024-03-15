@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 /* eslint-disable import/extensions */
-
 import * as func from '../src/index.js';
 
 export default function gameCalc() {
@@ -10,6 +9,7 @@ export default function gameCalc() {
   while (counter < func.numberOfRounds) {
     const { expression, result } = func.generateMathExpression();
     const userAnswer = Number(func.getAnswer(expression));
+
     if (userAnswer === result) {
       func.printCorrectMessage();
       counter += 1;
