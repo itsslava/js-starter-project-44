@@ -23,8 +23,6 @@
 - Пользователь должен дать правильный ответ на каждый вопрос.
 - Не допускается ни одной ошибки.
 
-Приготовьтесь к увлекательным и интеллектуальным испытаниям с "Играми Разума"!
-
 ## Установка и запуск игры
 
 1. **Установка игры**:
@@ -44,8 +42,8 @@
 
 3. Следуйте инструкциям в каждой игре, чтобы начать игру.
 
-### Bages
+Приготовьтесь к увлекательным и интеллектуальным испытаниям с "Играми Разума"!
 
-### Hexlet tests and linter status
+### Hexlet tests and linter status & Maintainability
 
 [![Actions Status](https://github.com/itsslava/js-starter-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/itsslava/js-starter-project-44/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/5bd2f2deb121bb75fa07/maintainability)](https://codeclimate.com/github/itsslava/js-starter-project-44/maintainability)

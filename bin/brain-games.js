@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
-// import greeting from '../src/cli.js';
+import * as func from '../src/index.js';
 
-console.log('Welcome to the Brain Games!');
-// greeting();
+func.welcome();
