@@ -4,6 +4,10 @@
 
 import * as func from '../src/index.js';
 
+export function isEven(n) {
+  return n % 2 === 0;
+}
+
 export default function gameEven() {
   const name = func.welcome('Answer "yes" if the number is even, otherwise answer "no"');
 
@@ -16,7 +20,7 @@ export default function gameEven() {
     });
 
     const textAnswer = userAnswer ? 'yes' : 'no';
-    const correctAnswer = func.isEven(randomNumber) ? 'yes' : 'no';
+    const correctAnswer = isEven(randomNumber) ? 'yes' : 'no';
 
     if (textAnswer === correctAnswer) {
       func.printCorrectMessage();

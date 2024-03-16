@@ -2,6 +2,19 @@
 /* eslint-disable import/extensions */
 import * as func from '../src/index.js';
 
+// проверка простое число или нет
+export function isPrime(number) {
+  if (number <= 1) {
+    return false;
+  }
+  for (let counter = 2; counter <= Math.sqrt(number); counter += 1) {
+    if (number % counter === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export default function gamePrime() {
   const name = func.welcome('Answer "yes" if given number is prime. Otherwise answer "no"');
 
