@@ -4,23 +4,27 @@
 import * as func from '../src/index.js';
 
 // генерация арифметической прогрессии
-export function generateProgression() {
+function generateSequence(start, step, length, hiddenIndex) {
+  const sequence = [];
+  for (let i = 0; i < length; i += 1) {
+    sequence.push(i === hiddenIndex ? '..' : start + step * i);
+  }
+  return sequence;
+}
+// генерация значений прогрессии
+function generateProgression() {
   const progressionLength = func.getRandomNumber(5, 10);
-
   const progressionStart = func.getRandomNumber(1, 50);
   const progressionStep = func.getRandomNumber(1, 10);
+  const hiddenNumberIndex = Math.floor(Math.random() * progressionLength);
 
-  const hiddenNumberIndex = Math.floor(Math.random() * progressionLength); // случайный индекс для скрытого числа
-  const hiddenNumber = progressionStart + progressionStep * hiddenNumberIndex;
-
-  const progression = [];
-  for (let counter = 0; counter < progressionLength; counter += 1) {
-    if (counter === hiddenNumberIndex) {
-      progression.push('..'); // скрываем число двумя точками
-    } else {
-      progression.push(progressionStart + progressionStep * counter); // добавляем число в прогрессию
-    }
-  }
+  const progression = generateSequence(
+    progressionStart,
+    progressionStep,
+    progressionLength,
+    hiddenNumberIndex,
+  );
+  const hiddenNumber = progression[hiddenNumberIndex];
 
   return { progression, hiddenNumber };
 }
