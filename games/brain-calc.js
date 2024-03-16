@@ -2,13 +2,13 @@
 /* eslint-disable import/extensions */
 import * as func from '../src/index.js';
 
+// генерация случайного математического знака
+function randomSign() {
+  const mathSigns = ['+', '-', '*'];
+  return mathSigns[Math.floor(Math.random() * 3)];
+}
 // генерация случайного математического выражения
 export function generateMathExpression() {
-  function randomSign() {
-    const mathSigns = ['+', '-', '*'];
-    return mathSigns[Math.floor(Math.random() * 3)];
-  }
-
   const operator = randomSign();
   const operand1 = func.getRandomNumber(1, 10);
   const operand2 = func.getRandomNumber(1, 10);
