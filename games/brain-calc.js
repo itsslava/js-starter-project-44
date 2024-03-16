@@ -43,11 +43,9 @@ export default function gameCalc() {
     const { expression, result } = generateMathExpression();
     const userAnswer = Number(func.getAnswer(expression));
 
-    if (userAnswer === result) {
-      func.printCorrectMessage();
+    if (func.checkAnswer(userAnswer, result, name, counter)) {
       counter += 1;
     } else {
-      func.printWrongMessage(userAnswer, result, name);
       return;
     }
   }

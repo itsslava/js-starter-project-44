@@ -25,11 +25,9 @@ export default function gameGcd() {
 
     const correctAnswer = getGcd(firstNum, secondNum);
 
-    if (userAnswer === correctAnswer) {
-      func.printCorrectMessage();
+    if (func.checkAnswer(userAnswer, correctAnswer, name, counter)) {
       counter += 1;
     } else {
-      func.printWrongMessage(userAnswer, correctAnswer, name);
       return;
     }
   }

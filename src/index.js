@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
@@ -47,10 +48,23 @@ function getPredicateCorrectAnswer(value, gameFunc) {
   return gameFunc(value) ? 'yes' : 'no';
 }
 
+// предикативный ответ
 export function predicateAnswer(value, gameFunc) {
   const userAnswer = getPredicateAnswer(value);
   const correctAnswer = getPredicateCorrectAnswer(value, gameFunc);
   return { userAnswer, correctAnswer };
+}
+
+// проверка ответа
+export function checkAnswer(userAnswer, correctAnswer, name, counter) {
+  if (userAnswer === correctAnswer) {
+    printCorrectMessage();
+    counter += 1;
+  } else {
+    printWrongMessage(userAnswer, correctAnswer, name);
+    return false;
+  }
+  return true;
 }
 
 // генерации случайного числа

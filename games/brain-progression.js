@@ -30,15 +30,13 @@ export default function gameProgression() {
 
   let counter = 0; // счетчик правильных ответов
   while (counter < func.numberOfRounds) {
-    const { progression, hiddenNumber } = func.generateProgression();
+    const { progression, hiddenNumber } = generateProgression();
 
     const userAnswer = Number(func.getAnswer(`${progression.join(' ')}`));
 
-    if (userAnswer === hiddenNumber) {
-      func.printCorrectMessage();
+    if (func.checkAnswer(userAnswer, hiddenNumber, name, counter)) {
       counter += 1;
     } else {
-      func.printWrongMessage(userAnswer, hiddenNumber, name);
       return;
     }
   }
