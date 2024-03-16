@@ -1,31 +1,17 @@
 /* eslint-disable no-console */
 /* eslint-disable import/extensions */
-// import readlineSync from 'readline-sync';
-
 import * as func from '../src/index.js';
 
+// четное\нечетное
 export function isEven(number) {
   return number % 2 === 0;
-}
-
-function getUserAnswer(randomNumber) {
-  const userAnswer = func.getAnswer(randomNumber, {
-    trueValue: ['yes'],
-    falseValue: ['no'],
-  });
-  return userAnswer ? 'yes' : 'no';
-}
-
-function getCorrectAnswer(randomNumber) {
-  return isEven(randomNumber) ? 'yes' : 'no';
 }
 
 function playRounds(name) {
   let counter = 0;
   while (counter < func.numberOfRounds) {
     const randomNumber = func.getRandomNumber(1, 100);
-    const userAnswer = getUserAnswer(randomNumber);
-    const correctAnswer = getCorrectAnswer(randomNumber);
+    const { userAnswer, correctAnswer } = func.predicateAnswer(randomNumber, isEven);
 
     if (userAnswer === correctAnswer) {
       func.printCorrectMessage();

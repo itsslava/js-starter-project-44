@@ -16,8 +16,8 @@ export function welcome(question) {
 export const numberOfRounds = 3;
 
 // получение ответа пользовавтеля
-export function getAnswer(value, addition = null) {
-  const userAnswer = readlineSync.question(`Question: ${value} \nYour answer: `, addition);
+export function getAnswer(value, option = null) {
+  const userAnswer = readlineSync.question(`Question: ${value} \nYour answer: `, option);
   return userAnswer;
 }
 
@@ -31,6 +31,26 @@ export function printWrongMessage(answer, correctAnswer, name) {
   console.log(
     `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${name}!`,
   );
+}
+
+// проверка ответа предикативной функции
+function getPredicateAnswer(value) {
+  const userAnswer = getAnswer(value, {
+    trueValue: ['yes'],
+    falseValue: ['no'],
+  });
+  return userAnswer ? 'yes' : 'no';
+}
+
+// правильный ответ предикативной функции
+function getPredicateCorrectAnswer(value, gameFunc) {
+  return gameFunc(value) ? 'yes' : 'no';
+}
+
+export function predicateAnswer(value, gameFunc) {
+  const userAnswer = getPredicateAnswer(value);
+  const correctAnswer = getPredicateCorrectAnswer(value, gameFunc);
+  return { userAnswer, correctAnswer };
 }
 
 // генерации случайного числа

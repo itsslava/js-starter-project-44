@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import * as func from '../src/index.js';
 
-// проверка простое число или нет
+// простое\нет
 export function isPrime(number) {
   if (number <= 1) {
     return false;
@@ -14,25 +14,25 @@ export function isPrime(number) {
   }
   return true;
 }
+// function getUserAnswer(randomNumber) {
+//   const userAnswer = func.getAnswer(randomNumber, {
+//     trueValue: ['yes'],
+//     falseValue: ['no'],
+//   });
+//   return userAnswer ? 'yes' : 'no';
+// }
 
-function getUserAnswer(randomNumber) {
-  const userAnswer = func.getAnswer(randomNumber, {
-    trueValue: ['yes'],
-    falseValue: ['no'],
-  });
-  return userAnswer ? 'yes' : 'no';
-}
-
-function getCorrectAnswer(randomNumber) {
-  return isPrime(randomNumber) ? 'yes' : 'no';
-}
+// function getCorrectAnswer(randomNumber) {
+//   return isPrime(randomNumber) ? 'yes' : 'no';
+// }
 
 function playRounds(name) {
   let counter = 0;
   while (counter < func.numberOfRounds) {
     const randomNumber = func.getRandomNumber(1, 100);
-    const userAnswer = getUserAnswer(randomNumber);
-    const correctAnswer = getCorrectAnswer(randomNumber);
+    const { userAnswer, correctAnswer } = func.predicateAnswer(randomNumber, isPrime);
+    // const userAnswer = getUserAnswer(randomNumber);
+    // const correctAnswer = getCorrectAnswer(randomNumber);
 
     if (userAnswer === correctAnswer) {
       func.printCorrectMessage();
