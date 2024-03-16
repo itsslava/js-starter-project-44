@@ -4,31 +4,42 @@
 
 import * as func from '../src/index.js';
 
-export function isEven(n) {
-  return n % 2 === 0;
+export function isEven(number) {
+  return number % 2 === 0;
+}
+
+function getUserAnswer(randomNumber) {
+  const userAnswer = func.getAnswer(randomNumber, {
+    trueValue: ['yes'],
+    falseValue: ['no'],
+  });
+  return userAnswer ? 'yes' : 'no';
+}
+
+function getCorrectAnswer(randomNumber) {
+  return isEven(randomNumber) ? 'yes' : 'no';
+}
+
+function playRounds(name) {
+  let counter = 0;
+  while (counter < func.numberOfRounds) {
+    const randomNumber = func.getRandomNumber(1, 100);
+    const userAnswer = getUserAnswer(randomNumber);
+    const correctAnswer = getCorrectAnswer(randomNumber);
+
+    if (userAnswer === correctAnswer) {
+      func.printCorrectMessage();
+    } else {
+      func.printWrongMessage(userAnswer, correctAnswer, name);
+      return;
+    }
+    counter += 1;
+  }
+  console.log(`Congratulations, ${name}!`);
 }
 
 export default function gameEven() {
   const name = func.welcome('Answer "yes" if the number is even, otherwise answer "no"');
 
-  let counter = 0;
-  while (counter < func.numberOfRounds) {
-    const randomNumber = func.getRandomNumber(1, 100);
-    const userAnswer = func.getAnswer(randomNumber, {
-      trueValue: ['yes'],
-      falseValue: ['no'],
-    });
-
-    const textAnswer = userAnswer ? 'yes' : 'no';
-    const correctAnswer = isEven(randomNumber) ? 'yes' : 'no';
-
-    if (textAnswer === correctAnswer) {
-      func.printCorrectMessage();
-      counter += 1;
-    } else {
-      func.printWrongMessage(textAnswer, correctAnswer, name);
-      return;
-    }
-  }
-  console.log(`Congratulations, ${name}!`);
+  playRounds(name);
 }

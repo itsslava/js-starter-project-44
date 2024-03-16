@@ -15,27 +15,38 @@ export function isPrime(number) {
   return true;
 }
 
-export default function gamePrime() {
-  const name = func.welcome('Answer "yes" if given number is prime. Otherwise answer "no"');
+function getUserAnswer(randomNumber) {
+  const userAnswer = func.getAnswer(randomNumber, {
+    trueValue: ['yes'],
+    falseValue: ['no'],
+  });
+  return userAnswer ? 'yes' : 'no';
+}
 
+function getCorrectAnswer(randomNumber) {
+  return isPrime(randomNumber) ? 'yes' : 'no';
+}
+
+function playRounds(name) {
   let counter = 0;
   while (counter < func.numberOfRounds) {
     const randomNumber = func.getRandomNumber(1, 100);
-    const userAnswer = func.getAnswer(randomNumber, {
-      trueValue: ['yes'],
-      falseValue: ['no'],
-    });
+    const userAnswer = getUserAnswer(randomNumber);
+    const correctAnswer = getCorrectAnswer(randomNumber);
 
-    const textAnswer = userAnswer ? 'yes' : 'no';
-    const correctAnswer = func.isPrime(randomNumber) ? 'yes' : 'no';
-
-    if (textAnswer === correctAnswer) {
+    if (userAnswer === correctAnswer) {
       func.printCorrectMessage();
-      counter += 1;
     } else {
-      func.printWrongMessage(textAnswer, correctAnswer, name);
+      func.printWrongMessage(userAnswer, correctAnswer, name);
       return;
     }
+    counter += 1;
   }
   console.log(`Congratulations, ${name}!`);
+}
+
+export default function gamePrime() {
+  const name = func.welcome('Answer "yes" if given number is prime. Otherwise answer "no"');
+
+  playRounds(name);
 }
